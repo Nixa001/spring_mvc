@@ -1,11 +1,14 @@
 package groupe2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "types")
+public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,19 +16,16 @@ public class Product {
 
     private String libelle;
 
-    private double prix;
+    @OneToMany(mappedBy = "type")
+    @JsonIgnore
+    private List<Product> products = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
-
-    public Product() {
+    public Type() {
     }
 
-    public Product(Long id, String libelle, double prix) {
+    public Type(Long id, String libelle) {
         this.id = id;
         this.libelle = libelle;
-        this.prix = prix;
     }
 
     public Long getId() {
@@ -44,28 +44,19 @@ public class Product {
         this.libelle = libelle;
     }
 
-    public double getPrix() {
-        return prix;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "Type{" +
                 "id=" + id +
                 ", libelle='" + libelle + '\'' +
-                ", prix=" + prix +
                 '}';
     }
 }

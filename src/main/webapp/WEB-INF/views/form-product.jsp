@@ -8,5 +8,12 @@
     <input type="text" name="libelle" value ="${product.libelle}" />
     <label for="">Prix</label>
     <input type="number" name="prix" value ="${product.prix}" />
+    <label for="">Type</label>
+    <select name="typeId">
+        <option value="">--Choisir un type --</option>
+        <c:forEach var="t" items="${types}">
+            <option value="${t.id}" ${product.type != null && product.type.id == t.id ? 'selected' : ''}>${t.libelle}</option>
+        </c:forEach>
+    </select>
     <button type="submit">Enregistrer</button>
 </form>

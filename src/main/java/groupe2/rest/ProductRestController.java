@@ -40,6 +40,7 @@ public class ProductRestController {
         Product productBd = productService.findById(id);
         productBd.setLibelle(product.getLibelle());
         productBd.setPrix(product.getPrix());
+        productBd.setType(product.getType());
         productService.save(productBd);
 
         return productBd;

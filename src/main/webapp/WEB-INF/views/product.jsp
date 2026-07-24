@@ -8,6 +8,7 @@
     <tr> <td>${product.id}</td>
       <td>${product.libelle}</td>
       <td>${product.prix}</td>
+      <td>${product.type.libelle}</td>
       <td>
         <a href="${pageContext.request.contextPath}/product/edit/${product.id}">Modifier</a>
         <a href="${pageContext.request.contextPath}/product/delete/${product.id}">Supprimer</a>
